@@ -7,7 +7,7 @@
     "outDir": "_out",
     "types": [
       "types-for-adobe/InDesign/2018"
-    ]
+    ],
   },
   "exclude": [
     "node_modules",

@@ -1,5 +1,26 @@
 // search for vowels "aeiou" within the chapter headings and artists page and implement angles
 // angels must be implemented on page numbers as well
+Array.prototype.filter = function (callBackFn, thisArg) {
+    if (this === void 0 || this === null) {
+        throw Error;
+    }
+    var t = Object(this);
+    var len = t.length >>> 0;
+    if (typeof callBackFn !== 'function') {
+        throw Error;
+    }
+    var res = [];
+    var theArg = arguments.length >= 2 ? arguments[1] : void 0;
+    for (var i = 0; i < len; i++) {
+        if (i in t) {
+            var val = t[i];
+            if (callBackFn.call(theArg, val, i, t)) {
+                res.push(val);
+            }
+        }
+    }
+    return res;
+};
 function main() {
     var doc = setUpDoc();
     if (doc === null)
@@ -14,7 +35,7 @@ function handleApplyingStyles(styles, doc) {
     }
 }
 function getSlantCharacterStyles(doc) {
-    var tilts = ["-30 Slant"];
+    var tilts = [];
     var allCharacterStyles = doc.allCharacterStyles;
     for (var i = 0; i < allCharacterStyles.length; i++) {
         var chkIfSlant = allCharacterStyles[i].name.split(" ");
